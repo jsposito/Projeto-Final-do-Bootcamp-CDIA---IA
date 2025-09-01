@@ -1,0 +1,55 @@
+# Makefile para facilitar comandos Docker
+.PHONY: help build run stop clean logs shell train
+
+# Variáveis
+IMAGE_NAME=bootcamp-ml
+CONTAINER_NAME=bootcamp_ml_project
+
+help: ## Mostrar esta ajuda
+	@echo "Comandos disponíveis:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
+
+build: ## Construir a imagem Docker
+	docker-compose build
+
+run: ## Executar o projeto com Docker Compose
+	docker-compose up -d
+
+run-jupyter: ## Executar apenas Jupyter
+	docker-compose up
+
+stop: ## Parar os containers
+	docker-compose down
+
+restart: ## Reiniciar os containers
+	docker-compose restart
+
+logs: ## Ver logs do container
+	docker-compose logs -f
+
+shell: ## Acessar shell do container
+	docker exec -it $(CONTAINER_NAME) bash
+
+train: ## Executar treinamento do modelo
+	docker exec -it $(CONTAINER_NAME) python main.py
+
+clean: ## Limpar containers e imagens
+	docker-compose down --volumes --rmi all
+	docker system prune -f
+
+status: ## Ver status dos containers
+	docker-compose ps
+
+setup: ## Configuração inicial completa
+	mkdir -p data models outputs visualizations notebooks
+	@echo "Estrutura de pastas criada!"
+	@echo "Coloque seus arquivos CSV na pasta 'data/'"
+
+quick-start: setup build run ## Configuração rápida completa
+	@echo "Projeto iniciado! Acesse http://localhost:8888"
+
+backup-models: ## Fazer backup dos modelos treinados
+	tar -czf models_backup_$(shell date +%Y%m%d_%H%M%S).tar.gz models/
+
+update-deps: ## Atualizar dependências
+	docker-compose build --no-cache

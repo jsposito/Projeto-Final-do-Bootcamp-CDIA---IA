@@ -1,0 +1,29 @@
+# Use uma imagem base do Python com Jupyter
+FROM python:3.9-slim
+
+# Definir diretório de trabalho
+WORKDIR /app
+
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar arquivo de requisitos
+COPY requirements.txt .
+
+# Instalar dependências Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar todos os arquivos do projeto
+COPY . .
+
+# Criar diretório para dados
+RUN mkdir -p /app/data
+
+# Expor porta para Jupyter
+EXPOSE 8888
+
+# Comando padrão para iniciar Jupyter
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
