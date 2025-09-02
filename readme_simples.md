@@ -19,7 +19,18 @@ Sistema inteligente para detecção de falhas em máquinas industriais usando Ma
 
 ## 🚀 Como usar?
 
-### Método 1: Script Automático (Mais Fácil)
+### Método 1: Google Colab
+```bash
+# 1. Colocar o arquivo RandomForest.ipynb
+no google colab
+
+# 2. Executar
+cada celular observando os resultados
+
+# 3. gereação do arquvo submission.csv com o resutado final
+```
+
+### Método 2: Script Automático (Mais Fácil)
 ```bash
 # 1. Executar menu interativo
 chmod +x run.sh
@@ -30,7 +41,7 @@ chmod +x run.sh
 # 4. Acessar http://localhost:8888
 ```
 
-### Método 2: Docker Manual
+### Método 3: Docker Manual
 ```bash
 # 1. Colocar dados
 mkdir data
