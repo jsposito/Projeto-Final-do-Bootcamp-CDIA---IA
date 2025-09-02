@@ -741,7 +741,7 @@ docker push seu-registry/bootcamp-ml:latest
 
 Este projeto foi desenvolvido como parte do **Bootcamp de Ciência de Dados e IA**.
 
-**Autor:** [Seu Nome]  
+**Autor:** Juliano Spósito Galdino  
 **Data:** Setembro 2025  
 **Versão:** 1.0.0
 
@@ -750,7 +750,3 @@ Este projeto foi desenvolvido como parte do **Bootcamp de Ciência de Dados e IA
 ## 📄 Licença
 
 Este projeto é desenvolvido para fins educacionais como parte do Bootcamp CDIA.
-
----
-
-**🎯 Pronto para impressionar na apresentação!** 🚀
