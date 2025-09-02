@@ -27,7 +27,7 @@ no google colab
 # 2. Executar
 cada celular observando os resultados
 
-# 3. gereação do arquvo submission.csv com o resutado final
+# 3. gereação do arquvo submission.csv com o resutado final.
 ```
 
 ### Método 2: Script Automático (Mais Fácil)
